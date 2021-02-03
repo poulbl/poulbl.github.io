@@ -3,16 +3,82 @@
 
 <head>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
 
     <title>Big title</title>
 </head>
 <body>
 
-    <h1>Hej</h1>
-    <p>Hej</p>
+    <!--Nav bar-->
+    <div class="navbar">
+        <div class="container flex">
+            <h1 class ="logo">Poul</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="vejr.html">Vejr</a></li>
+                    <li><a href="vejrudsigt.html">Vejrudsigt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--Show case-->
+    <section class="showcase">
+        <div class="container grid">
+            <div class="showcase-text">
+                <h1>Weather Today</h1>
+                <a href="weather.html" class="btn btn-outline">Fill in city name or geographical data.</a>
+            </div>
+
+            <div class="showcase-form card">
+                <h2>Type values</h2>
+                 <form>
+                    <div class="form-control">
+                        <input type="text" name="CityInput" placeholder="City">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="LatInput" placeholder="Lattitude">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="longInput" placeholder="Longitude">
+                    </div>
+                    <input type="submit" value="Send" class="btn btn-primary">
+                </form>
+            </div>
+
+            <div class="showcase-text">
+                <h1>Weather Forecast</h1>
+                <a href="vejrudsigt.html" class="btn btn-outline">Fill in city name or geographical data.</a>
+            </div>
+            <div class="showcase-form card">
+                <h2>Type values</h2>
+                 <form>
+                    <div class="form-control">
+                        <input type="text" name="CityInput" placeholder="City">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="LatInput" placeholder="Lattitude">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="longInput" placeholder="Longitude">
+                    </div>
+                    <input type="submit" value="Send" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </section>
+
+<textarea id="cityInput">Skriv by her :)</textarea>
+<button id="cityBtn">Get Data</button>
+<textarea id="longInput">Skriv longitude her :)</textarea>
+<textarea id="latInput">Skriv latitude her :)</textarea>
+<button id="geoBtn">Get Data Geo</button>
+
 
 </body>
 
 
+<footer>
+    <script src="script.js"></script>
+</footer>
 </html>
