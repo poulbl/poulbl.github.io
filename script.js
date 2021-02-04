@@ -40,8 +40,8 @@ const forecastbtn = document.getElementById('ForecastConfirm')
 const nowForm = document.getElementById('nowForm')
 const forecastForm = document.getElementById('forecastForm')
 
-const NewTextArea = document.getElementById('datasection')
-NewTextArea.hidden = true
+//const NewTextArea = document.getElementById('datasection')
+//NewTextArea.hidden = true
 
 nowForm.addEventListener('submit', WeatherNow)
 forecastForm.addEventListener('submit', WeatherForecast)
@@ -60,6 +60,44 @@ const newText = (content) => {
 
 const populateData = (data, searchType) => {
     //alert(data.main.temp)
+    
+    const dataContainer = document.createElement('div')
+    dataContainer.setAttribute('id', 'datacontainer')
+    dataContainer.setAttribute('class', 'container list')
+    const headline = document.createElement('h1')
+
+    document.getElementById('datasection').appendChild(dataContainer)
+    dataContainer.appendChild(headline)
+    
+    headline.textContent = 'It works?'
+
+    var kvplist = JSON.parse(data)
+
+    console.log(data)
+    kvplist.forEach(element => {
+        console.log(element)
+
+        //const p = document.createElement('p')
+        //p.setAttribute('id', element.name)
+        //p.TextContent = key.value
+        //dataContainer.appendChild(p)
+    });
+    const temp = document.createElement('div')
+
+    alert(headline.textContent)
+    /*
+    
+<section class=")data-area" id="datasection">
+    <div class="container list" id="datacontainer">
+        <h1 id="headline" class="weather headline">Data!</h1>
+        
+        <p id="temp" class="weather data">Temperature: </p>
+        <p id="feels_like" class="weather data">Feels like: </p>
+        <p id="windspeed" class="weather data">Wind speed: </p>
+        <p id="clouds" class="weather data">Clouds: </p>
+    </div>
+</section>
+
     NewTextArea.hidden = false
     if(searchType === 'city')
     {
@@ -81,6 +119,8 @@ const populateData = (data, searchType) => {
     document.getElementById('feels_like').textContent = `Feels Like: (Kelvin) ${data.main.feels_like}`
     document.getElementById('windspeed').textContent = `Wind Speed: ${data.wind.speed} m/s`
     document.getElementById('clouds').textContent = `Clouds: ${data.clouds.all}`
+    
+    */
 }
 
 /*
@@ -122,16 +162,31 @@ async function WeatherForecast(event)
 {
     event.preventDefault()
     var city = document.getElementById('ForeCastCityInput').value
+    console.log(city)
 
     var searchType
     var result = 'No data found :('
     
-    if(nowCity.value !== '')
+    if(foreCity.value !== '')
     {
         searchType = 'city'
         // TODO
-        result = await fetch(url(city))
+        result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`)
                         .then(response => response.json())
+    
+        console.log(result)
+        var resultList = result.list.map(data => 
+            {
+                var obj = {
+                    "temp": data.main.temp,
+                    "feels_like": data.main.feels_like,
+                    "humidity": data.main.humidity,
+                    "clouds": data.clouds.all,
+                    "windspeed": data.wind.speed
+                }
+
+                return obj
+            })
     }
     else if(nowLat.value !== '' && nowLong.value !== '') {
         searchType = 'geo'
@@ -143,7 +198,7 @@ async function WeatherForecast(event)
        result = 'No data found :( - Try something else' 
     }
 
-    populateData(result, searchType)
+    populateData(resultList, searchType)
     //newText(result)
 
     return false;
@@ -166,6 +221,8 @@ async function GetWeatherDataGeo(long, lat)
 
     return result
 }
+
+
 
 
 /* Interessante api kald.
