@@ -27,52 +27,58 @@
         <div class="container grid">
             <div class="showcase-text">
                 <h1>Weather Today</h1>
-                <a href="weather.html" class="btn btn-outline">Fill in city name or geographical data.</a>
+                <a href="weather.html">Fill in city name or geographical data.</a>
             </div>
 
             <div class="showcase-form card">
                 <h2>Type values</h2>
-                 <form>
+                 <form id="nowForm">
                     <div class="form-control">
-                        <input type="text" name="CityInput" placeholder="City">
+                        <input id="NowCityInput" type="text" placeholder="City">
                     </div>
                     <div class="form-control">
-                        <input type="text" name="LatInput" placeholder="Lattitude">
+                        <input id="NowLatInput" type="text" placeholder="Lattitude">
                     </div>
                     <div class="form-control">
-                        <input type="text" name="longInput" placeholder="Longitude">
+                        <input id="NowLongInput" type="text" placeholder="Longitude">
                     </div>
-                    <input type="submit" value="Send" class="btn btn-primary">
+                    <input id="WeatherConfirm" type="submit" value="Send" class="btn btn-primary">
                 </form>
             </div>
 
             <div class="showcase-text">
                 <h1>Weather Forecast</h1>
-                <a href="vejrudsigt.html" class="btn btn-outline">Fill in city name or geographical data.</a>
+                <a href="vejrudsigt.html">Fill in city name or geographical data.</a>
             </div>
             <div class="showcase-form card">
                 <h2>Type values</h2>
-                 <form>
+                 <form id="ForecastForm">
                     <div class="form-control">
-                        <input type="text" name="CityInput" placeholder="City">
+                        <input id="ForeCastCityInput" type="text" placeholder="City">
                     </div>
                     <div class="form-control">
-                        <input type="text" name="LatInput" placeholder="Lattitude">
+                        <input id="ForeCastLatInput" type="text" placeholder="Lattitude">
                     </div>
                     <div class="form-control">
-                        <input type="text" name="longInput" placeholder="Longitude">
+                        <input id="ForecastLongInput" type="text" placeholder="Longitude">
                     </div>
-                    <input type="submit" value="Send" class="btn btn-primary">
+                    <button id="ForecastConfirm" type="submit" value="Send" class="btn btn-primary"></button>
                 </form>
             </div>
         </div>
     </section>
 
-<textarea id="cityInput">Skriv by her :)</textarea>
-<button id="cityBtn">Get Data</button>
-<textarea id="longInput">Skriv longitude her :)</textarea>
-<textarea id="latInput">Skriv latitude her :)</textarea>
-<button id="geoBtn">Get Data Geo</button>
+    <!--Data Area-->
+<section class="data-area" id="datasection">
+    <div class="container" id="datacontainer">
+        <h1 id="headline" class="weather headline">Data!</h1>
+        
+        <p id="temp" class="weather data">Temperature: </p>
+        <p id="feels_like" class="weather data">Feels like: </p>
+        <p id="windspeed" class="weather data">Wind speed: </p>
+        <p id="clouds" class="weather data">Clouds: </p>
+    </div>
+</section>
 
 
 </body>

@@ -116,3 +116,7 @@ img {
     margin: 10px;
     color: #333;
 }
+
+.data-area h1 {
+    font-size: 40px;
+}
