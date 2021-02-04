@@ -5,24 +5,9 @@ var city = 'viborg';
 var url = (city) => `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 
 
-//var promise = fetch(url)
-//            .then(data => data.text())
-//            .then(data => console.log(data))
-
-
-//const textArea = document.createElement('textarea')
-//textArea.textContent = 'Skriv by her'
 const textArea = document.getElementById('cityInput')
 const textLong = document.getElementById('longInput')
 const textLat = document.getElementById('latInput')
-
-//const btn = document.createElement('button')
-//const citybtn = document.getElementById('cityBtn')
-//const geobtn = document.getElementById('geoBtn')
-
-//document.body.appendChild(textArea)
-//document.body.appendChild(btn)
-//https://www.youtube.com/watch?v=p0bGHP-PXD4
 
 
 // Nye form felter
@@ -110,7 +95,6 @@ const populateData = (data, searchType, caller) => {
         NewTextArea.hidden = false
         var i = 1
         data.forEach(element => {
-            console.log(element)
             const dataContainer = document.createElement('div')
             dataContainer.setAttribute('id', 'datacontainer')
             dataContainer.setAttribute('class', 'container card')
