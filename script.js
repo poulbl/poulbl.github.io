@@ -40,8 +40,10 @@ const forecastbtn = document.getElementById('ForecastConfirm')
 const nowForm = document.getElementById('nowForm')
 const forecastForm = document.getElementById('forecastForm')
 
-//const NewTextArea = document.getElementById('datasection')
-//NewTextArea.hidden = true
+const NewTextArea = document.getElementById('datasection')
+NewTextArea.hidden = true
+const datacont = document.getElementById('datacontainer')
+datacont.hidden = true
 
 nowForm.addEventListener('submit', WeatherNow)
 forecastForm.addEventListener('submit', WeatherForecast)
@@ -58,69 +60,80 @@ const newText = (content) => {
     //document.body.NewTextArea.appendChild(textBox)
 }
 
-const populateData = (data, searchType) => {
+const populateData = (data, searchType, caller) => {
     //alert(data.main.temp)
     
-    const dataContainer = document.createElement('div')
-    dataContainer.setAttribute('id', 'datacontainer')
-    dataContainer.setAttribute('class', 'container list')
-    const headline = document.createElement('h1')
-
-    document.getElementById('datasection').appendChild(dataContainer)
-    dataContainer.appendChild(headline)
-    
-    headline.textContent = 'It works?'
-
-    var kvplist = JSON.parse(data)
-
-    console.log(data)
-    kvplist.forEach(element => {
-        console.log(element)
-
-        //const p = document.createElement('p')
-        //p.setAttribute('id', element.name)
-        //p.TextContent = key.value
-        //dataContainer.appendChild(p)
-    });
-    const temp = document.createElement('div')
-
-    alert(headline.textContent)
-    /*
-    
-<section class=")data-area" id="datasection">
-    <div class="container list" id="datacontainer">
-        <h1 id="headline" class="weather headline">Data!</h1>
-        
-        <p id="temp" class="weather data">Temperature: </p>
-        <p id="feels_like" class="weather data">Feels like: </p>
-        <p id="windspeed" class="weather data">Wind speed: </p>
-        <p id="clouds" class="weather data">Clouds: </p>
-    </div>
-</section>
-
-    NewTextArea.hidden = false
-    if(searchType === 'city')
+    if(caller === 'now')
     {
-        document.getElementById('headline').textContent = `Data for ${searchType} ${data.name}:`
+        NewTextArea.hidden = false
+        datacont.hidden = false
+        if(searchType === 'city')
+        {
+            document.getElementById('headline').textContent = `Data for ${searchType} ${data.name}:`
+        }
+        else if (searchType === 'geo')
+        {
+            document.getElementById('headline').textContent = `Data for location ${data.coord.lat} latitude and ${data.coord.lon} longitude`
+        }
+        else {
+            document.getElementById('headline').textContent = `Search failed.`
+            document.getElementById('temp').textContent = `Temperature (Kelvin): No Data`
+            document.getElementById('feels_like').textContent = `Feels Like (Kelvin): No Data`
+            document.getElementById('windspeed').textContent = `Wind Speed: No Data`
+            document.getElementById('clouds').textContent = `Clouds: No Data`
+        }
+            
+        document.getElementById('temp').textContent = `Temperature (Kelvin): ${data.main.temp}`
+        document.getElementById('feels_like').textContent = `Feels Like: (Kelvin) ${data.main.feels_like}`
+        document.getElementById('windspeed').textContent = `Wind Speed: ${data.wind.speed} m/s`
+        document.getElementById('clouds').textContent = `Clouds: ${data.clouds.all}`
     }
-    else if (searchType === 'geo')
+
+    if(caller === 'forecast')
     {
-        document.getElementById('headline').textContent = `Data for location ${data.coord.lat} latitude and ${data.coord.lon} longitude`
-    }
-    else {
-        document.getElementById('headline').textContent = `Search failed.`
-        document.getElementById('temp').textContent = `Temperature (Kelvin): No Data`
-        document.getElementById('feels_like').textContent = `Feels Like (Kelvin): No Data`
-        document.getElementById('windspeed').textContent = `Wind Speed: No Data`
-        document.getElementById('clouds').textContent = `Clouds: No Data`
-    }
+        if(data == undefined)
+        {
+            document.getElementById('headline').textContent = `Search failed.`
+            document.getElementById('temp').textContent = `Temperature (Kelvin): No Data`
+            document.getElementById('feels_like').textContent = `Feels Like (Kelvin): No Data`
+            document.getElementById('windspeed').textContent = `Wind Speed: No Data`
+            document.getElementById('clouds').textContent = `Clouds: No Data`
+
+            return
+        }
+
+        if(searchType === 'city')
+        {
+            console.log('hej' + data)
+            document.getElementById('headline').textContent = `Data for ${searchType} ${data[0].name}:`
+        }
+        NewTextArea.hidden = false
+        var i = 1
+        data.forEach(element => {
+            console.log(element)
+            const dataContainer = document.createElement('div')
+            dataContainer.setAttribute('id', 'datacontainer')
+            dataContainer.setAttribute('class', 'container card')
+            const headline = document.createElement('h1')
+            headline.textContent = `${i*3} Hours from now.`
+            i++
         
-    document.getElementById('temp').textContent = `Temperature (Kelvin): ${data.main.temp}`
-    document.getElementById('feels_like').textContent = `Feels Like: (Kelvin) ${data.main.feels_like}`
-    document.getElementById('windspeed').textContent = `Wind Speed: ${data.wind.speed} m/s`
-    document.getElementById('clouds').textContent = `Clouds: ${data.clouds.all}`
-    
-    */
+            document.getElementById('datasection').appendChild(dataContainer)
+            dataContainer.appendChild(headline)
+
+
+            for (const key in element) {
+                if (Object.hasOwnProperty.call(element, key)) {
+                    const yeet = element[key];
+                    
+                    const p = document.createElement('p')
+                    p.setAttribute('id', key)
+                    p.textContent = key + ': ' + yeet
+                    dataContainer.appendChild(p)
+                }
+            }
+        });
+    }
 }
 
 /*
@@ -151,7 +164,7 @@ async function WeatherNow(event)
        result = 'No data found :( - Try something else' 
     }
 
-    populateData(result, searchType)
+    populateData(result, searchType, 'now')
     //newText(result)
 
     return false;
@@ -161,23 +174,26 @@ async function WeatherNow(event)
 async function WeatherForecast(event)
 {
     event.preventDefault()
-    var city = document.getElementById('ForeCastCityInput').value
-    console.log(city)
 
-    var searchType
+    var searchType = 'ooga'
     var result = 'No data found :('
     
     if(foreCity.value !== '')
     {
+        var city = document.getElementById('ForeCastCityInput').value
         searchType = 'city'
         // TODO
         result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`)
                         .then(response => response.json())
     
         console.log(result)
+
+        var cityName = result.city.name
+
         var resultList = result.list.map(data => 
             {
                 var obj = {
+                    "name": cityName,
                     "temp": data.main.temp,
                     "feels_like": data.main.feels_like,
                     "humidity": data.main.humidity,
@@ -188,17 +204,32 @@ async function WeatherForecast(event)
                 return obj
             })
     }
-    else if(nowLat.value !== '' && nowLong.value !== '') {
+    else if(foreLat.value !== '' && foreLong.value !== '') {
         searchType = 'geo'
         // TODO
         result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${foreLat.value}&lon=${foreLong.value}&appid=${apiKey}`)
                           .then(response => response.json())
-    }
+
+            console.log('result')
+            console.log(result)
+                var resultList = result.list.map(data => 
+                {
+                    var obj = {
+                        "temp": data.main.temp,
+                        "feels_like": data.main.feels_like,
+                        "humidity": data.main.humidity,
+                        "clouds": data.clouds.all,
+                        "windspeed": data.wind.speed
+                    }
+    
+                    return obj
+                })
+}
     else {
        result = 'No data found :( - Try something else' 
     }
 
-    populateData(resultList, searchType)
+    populateData(resultList, searchType, 'forecast')
     //newText(result)
 
     return false;
