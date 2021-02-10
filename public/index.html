@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>La' Vejr (Poul)</title>
+</head>
+<body>
+
+    <!--Nav bar-->
+    <div class="navbar">
+        <div class="container flex">
+            <h1 class ="logo">La' Vejr</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="user.html">Settings</a></li>
+                    <li><a href="signup.html">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--Show case-->
+    <section class="showcase">
+        <div class="container grid">
+            <div class="showcase-text">
+                <h1 class="text">Weather Today</h1>
+                <a>Fill in city name OR geographical data.</a>
+            </div>
+
+            <div class="showcase-form card">
+                <h2 class="text">Type values</h2>
+                 <form id="nowForm">
+                    <div class="form-control">
+                        <input id="NowCityInput" type="text" placeholder="City">
+                    </div>
+                    <div class="form-control">
+                        <input id="NowLatInput" type="text" placeholder="Lattitude">
+                    </div>
+                    <div class="form-control">
+                        <input id="NowLongInput" type="text" placeholder="Longitude">
+                    </div>
+                    <input id="WeatherConfirm" type="submit" value="Send" class="btn btn-primary">
+                </form>
+            </div>
+
+            <div class="showcase-text">
+                <h1 class="text">Weather Forecast</h1>
+                <a>Fill in city name OR geographical data.</a>
+            </div>
+            <div class="showcase-form card">
+                <h2 class="text">Type values</h2>
+                 <form id="forecastForm">
+                    <div class="form-control">
+                        <input id="ForeCastCityInput" type="text" placeholder="City">
+                    </div>
+                    <div class="form-control">
+                        <input id="ForeCastLatInput" type="text" placeholder="Lattitude">
+                    </div>
+                    <div class="form-control">
+                        <input id="ForecastLongInput" type="text" placeholder="Longitude">
+                    </div>
+                    <input id="ForecastConfirm" type="submit" value="Send" class="btn btn-outline"></input>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!--Data Area-->
+    <section class="data-area grid" id="datasection">
+
+        <div class="container card" id="datacontainer">
+            <h1 class="text" id="headline" class="weather headline">Data!</h1>
+            
+            <p class="text" id="temp" class="weather data">Temperature: </p>
+            <p class="text" id="feels_like" class="weather data">Feels like: </p>
+            <p class="text" id="windspeed" class="weather data">Wind speed: </p>
+            <p class="text" id="clouds" class="weather data">Clouds: </p>
+        </div>
+    </section>
+
+</body>
+
+
+<footer>
+    <script src="script.js"></script>
+</footer>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script>
+        
+    function InitTheme() {
+        const htmlEl = document.getElementsByTagName('html')[0]
+        const storedTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null
+        console.log('stored theme is ' + storedTheme)
+        if (storedTheme) {
+            htmlEl.dataset.theme = storedTheme
+        }
+    }
+    
+    InitTheme();
+
+    </script>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="container flex">
+            <h1 class ="logo">La' Vejr</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="user.html">Settings</a></li>
+                    <li><a href="signup.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1 class="headertext">Login</h1>
+    </div>
+    <section class="settings flex">
+        <div class="container">
+            <div class="showcase-form card">
+                <form id="SignupForm" action="/login-user" method="POST">
+                    <div class="form-control">
+                        <input id="usernameInput" type="text" placeholder="Username" name="username">
+                    </div>
+                    <div class="form-control">
+                        <input id="passwordInput" type="password" placeholder="Password" name="password">
+                    </div>
+                    <div class="form-control">
+                        <input id="signupConfirm" type="submit" value="Login" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="header">
+        <h1 class="headertext">Signup</h1>
+    </div>
+    <section class="settings flex">
+        <div class="container">
+            <div class="showcase-form card">
+                <form id="SignupForm" action="/create-user" method="POST">
+                    <div class="gridSignup form-control">
+                        <p class="text">Email:</p>
+                        <input id="emailInput" type="email" placeholder="Email" name="email">
+                    </div>
+                    <div class="gridSignup form-control">
+                        <p class="text">Username:</p>
+                        <input id="usernameInput" type="text" placeholder="Username" name="username">
+                    </div>
+                    <div class="gridSignup form-control">
+                        <p class="text">Password:</p>
+                        <input id="passwordInput" type="password" placeholder="Password" name="password">
+                    </div>
+                    <input id="signupConfirm" type="submit" value="Sign up" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+<footer>
+    <script src="script.js"></script>
+</footer>
+</html>

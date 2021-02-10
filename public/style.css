@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --primary-color:  #FCFCFC;
+    --secondary-color: #444;
+    --tertiary-color: #333333;
+}
+
+html[data-theme='light'] {
+    --primary-color:  #FCFCFC;
+    --secondary-color: #CDCDCD;
+    --tertiary-color: #EDEDED;
+    --text-color: #444;
+}
+
+html[data-theme='dark'] {
+    --primary-color:  #333333;
+    --secondary-color: #222;
+    --tertiary-color: #434343;
+    --text-color: #B5B5B5;
+}
+
+html[data-theme='blue'] {
+    --primary-color: #3872a3;  
+    --secondary-color: #444;
+    --tertiary-color: #333333;
+    --text-color: #B5B5B5;
+}
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'roboto', sans-serif; 
+    color: var(--primary-color);
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.text {
+    color: var(--text-color)
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+h1, h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 10px, 0;
+}
+
+p {
+    margin: 10px, 0;
+}
+
+img {
+    width: 100%;
+}
+
+.navbar {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    height: 70px;
+
+}
+
+.navbar ul {
+    display:flex;
+}
+
+.navbar a {
+    color: var(--text-color);
+    padding: 10px;
+    margin: 0, 5px;
+}
+
+.navbar a:hover {
+    border-bottom: 2px var(--secondary-color) solid;
+}
+
+.navbar .flex {
+    justify-content: space-between;
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);;
+    position: relative;
+}
+
+.headertext {
+    color: var(--text-color);
+    position: relative;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 0, 40px;
+}
+
+.btn-themes {
+    overflow: visible;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flexSignup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.gridSignup {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Showcase */
+.showcase {
+    height: 500px;
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    position: relative;
+}
+
+.showcase h1 {
+    font-size: 40px;
+}
+
+.shadowcase .grid{
+    grid-template-columns: 55% 45%;
+    gap: 30px;
+}
+
+.showcase p {
+    margin: 20px 0;
+}
+
+.showcase-form {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    z-index: 100;
+    justify-self: flex-end;
+}
+
+.settings-form {
+    position: relative;
+    width: 500px;
+    padding: 40px;
+    z-index: 100;
+    justify-self: flex-end;
+}
+
+
+.form-control {
+    margin: 10px 0;
+}
+
+.showcase-form input[type='text'],
+.showcase-form input[type='email'],
+.showcase-form input[type='password'] {
+    border: 0;
+    border-bottom: 1px solid var(--tertiary-color);
+    width: 100%;
+    padding: 3px;
+}
+
+
+.settings-form input[type='text'],
+.settings-form input[type='email'],
+.settings-form input[type='password'] {
+    border: 0;
+    border-bottom: 1px solid var(--tertiary-color);
+    width: 100%;
+    padding: 3px;
+}
+
+.text-input {
+    border: 0;
+}
+
+.card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    color: var(--primary-color);
+}
+
+.data-area {
+    background-color: var(--primary-color);
+}
+
+.data-area h1 {
+    font-size: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-outline {
+    border: 1px var(--primary-color) solid;
+}
+
+.btn:hover {
+    transform: scale(0.97);
+}
+
+
+

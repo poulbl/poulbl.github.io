@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script>
+        
+        function InitTheme() {
+            const htmlEl = document.getElementsByTagName('html')[0]
+            const storedTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null
+            console.log('stored theme is ' + storedTheme)
+            if (storedTheme) {
+                htmlEl.dataset.theme = storedTheme
+            }
+        }
+        
+        InitTheme();
+    
+        </script>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="container flex">
+            <h1 class ="logo">La' Vejr</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="user.html">Settings</a></li>
+                    <li><a href="signup.html">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--HEADER-->
+    <div class="header">
+        <h1 class="headertext">User Settings</h1>
+    </div>
+    <section class="settings flex">
+        <div class="container">
+            <div class="settings-form">
+                <form id="settingsForm" action="/saveSettings" method="POST"></form>>
+                    <div class="form-control">
+                        <p class="text">Email:</p>
+                        <input id="emailUser" type="email" placeholder="Email">
+                    </div>
+                    <div class="form-control">
+                        <p class="text">Full Name:</p>
+                        <input id="nameUser" type="text" placeholder="Full Name">
+                    </div>
+                    <div class="form-control">
+                        <p class="text">City of Residence:</p>
+                        <input id="cityUser" type="text" placeholder="City you live in">
+                    </div>
+                    <div class="form-control">
+                        <p class="text">Other location:</p>
+                        <input id="cityUser" type="text" placeholder="Place you want to know about...">
+                    </div>
+                    <div class="form-control">
+                        <p class="text">Email:</p>
+                        <input id="cityUser" type="text" placeholder="City you live in">
+                    </div>
+                    <div class="form-control">
+                        <p class="text">Email:</p>
+                        <input id="cityUser" type="text" placeholder="City you live in">
+                    </div>
+                    <div class="btn-themes">
+                        <button class="btn theme-btn" id="themelight" onclick="ChangeTheme('light')">
+                            Light theme
+                        </button>
+                        <button class="btn theme-btn" id="theme-dark" onclick="ChangeTheme('dark')">
+                            Dark theme
+                        </button>
+                        <button class="btn theme-btn" id="theme-blue" onclick="ChangeTheme('blue')">
+                            Blue theme
+                        </button>
+                    </div>
+                    <br>
+                    <input id="confirmUser" type="submit" value="Confirm" class="btn btn-primary"></button>
+                    
+                </form>
+            </div>
+            
+
+        </div>
+    </section>
+</body>
+<footer>
+    <script src="script.js"></script>
+</footer>
+</html>
